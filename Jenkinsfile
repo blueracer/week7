@@ -87,23 +87,23 @@ pipeline {
 
           stage("Package") {
                steps {
-                 script {
-                   try {
-                     container('gradle') {
-                       sh """
-                       ./gradlew build
-                       mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-                       """
-                     }
-                   }
-                  catch (Exception e) {
-                    echo "Build FAILED. Exiting"
-                    sh 'exit 1'
-                  }
-                 }
-               }
+			       script {
+                     try {
+					   container('gradle') {
+                        sh """
+						  ./gradlew build
+						  mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
+						"""
+					   }
+                     } 
+					 catch (Exception e) {
+                       echo 'Exception occurred: ' + e.toString()
+                       sh 'exit 1'
+                      }
+                    }
+				}
           }
-
+          
       stage('Build and Push to Docker Registry') {
       steps { 
       container('kaniko') {
