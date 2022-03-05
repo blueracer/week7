@@ -45,6 +45,7 @@ podTemplate(yaml: '''
           chmod +x gradlew
           ./gradlew build
           mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
+          catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED')
           '''
         }
       }
