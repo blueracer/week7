@@ -87,17 +87,17 @@ pipeline {
 
           stage("Package") {
                steps {
-			       script {
+			          script {
                      try {
-					   container('gradle') {
+					              container('gradle') {
                         sh """
-						  ./gradlew build
-						  mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-						"""
-					   }
+						            ./gradlew build
+						            mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
+						            """
+					              }
                      } 
 					 catch (Exception e) {
-                       echo 'Exception occurred: ' + e.toString()
+                       echo "Build failed. Exiting"
                        sh 'exit 1'
                       }
                     }
@@ -119,10 +119,10 @@ pipeline {
             '''
             script {
               if (env.BRANCH_NAME == 'main') {
-                sh "/kaniko/executor --context `pwd` --destination blueracer/calculator:1.0"
+                sh "/kaniko/executor --context `pwd` --destination blueracer/calculator:1.0 --force"
               }
               if (env.BRANCH_NAME == 'feature') {
-                sh "/kaniko/executor --context `pwd` --destination blueracer/calculator-feature:0.1"
+                sh "/kaniko/executor --context `pwd` --destination blueracer/calculator-feature:0.1 --force"
               }
             }
         }
