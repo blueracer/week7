@@ -89,7 +89,7 @@ pipeline {
                steps {
                  script {
                    try {
-                     container('grade') {
+                     container('gradle') {
                        sh """
                        ./gradlew build
                        mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
