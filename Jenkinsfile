@@ -103,6 +103,7 @@ pipeline {
                }
           }
       stage('Build and Push to Docker Registry') {
+      steps { 
       container('kaniko') {
         script {
           if (env.BRANCH_NAME != 'playground') {
@@ -127,7 +128,7 @@ pipeline {
             echo "This is a playground branch"
           }
         }
-
+}
        }
     }
 /*
