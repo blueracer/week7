@@ -39,7 +39,7 @@ podTemplate(yaml: '''
    stage('Test and Build a gradle project') {
     git 'https://github.com/blueracer/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
       container('gradle') {        
-          stage('Build a gradle project') {
+          stage('Test and Build a gradle project') {
           sh '''
           cd /home/jenkins/agent/workspace/week7_main/Chapter08/sample1
           chmod +x gradlew
@@ -55,7 +55,7 @@ podTemplate(yaml: '''
       }
     }
 
-    stage('Build Java Image') {
+    stage('Build and Push to Docker Registry') {
       container('kaniko') {
         stage('Build a container') {
           sh '''
