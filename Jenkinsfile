@@ -41,7 +41,7 @@ podTemplate(yaml: '''
       container('gradle') {        
           stage('Build a gradle project') {
           sh '''
-          cd /home/jenkins/agent/workspace/week7_playground/Chapter08/sample1
+          cd /home/jenkins/agent/workspace/week7_feature/Chapter08/sample1
           chmod +x gradlew
           ./gradlew compileJava
           ./gradlew test
