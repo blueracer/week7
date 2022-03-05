@@ -43,9 +43,11 @@ podTemplate(yaml: '''
           sh '''
           cd /home/jenkins/agent/workspace/week7_playground/Chapter08/sample1
           chmod +x gradlew
+          catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') {
           ./gradlew build
+          }
           mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-          catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED')
+          
           '''
         }
       }
