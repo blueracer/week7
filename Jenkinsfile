@@ -42,6 +42,7 @@ podTemplate(yaml: '''
           stage('Test and Build a gradle project') {
           sh '''
           cd /home/jenkins/agent/workspace/week7_main/Chapter08/sample1
+          echo ${env.BRANCH_NAME} branch
           chmod +x gradlew
           ./gradlew compileJava
           ./gradlew test
