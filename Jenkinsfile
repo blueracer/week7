@@ -9,22 +9,11 @@ pipeline {
                     sh "./gradlew compileJava"
                }
           }
-          stage("Unit test") {
-               steps {
-                    sh "./gradlew test"
-               }
-          }
-          stage("Static code analysis") {
-               steps {
-                    sh "./gradlew checkstyleMain"
-               }
-          }
           stage("Package") {
                steps {
                     sh "./gradlew build"
                }
           }
-/*
           stage("Docker build") {
                steps {
                     sh "docker build -t leszko/calculator:${BUILD_TIMESTAMP} ."
@@ -34,7 +23,7 @@ pipeline {
           stage("Docker login") {
                steps {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
-                               usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                               usernameVariable: 'blueracer', passwordVariable: 'Racers12#']]) {
                          sh "docker login --username $USERNAME --password $PASSWORD"
                     }
                }
@@ -51,7 +40,6 @@ pipeline {
                     sh "sed  -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' calculator.yaml"
                }
           }
-          
           stage("Deploy to staging") {
                steps {
                     sh "kubectl config use-context staging"
@@ -59,14 +47,6 @@ pipeline {
                     sh "kubectl apply -f calculator.yaml"
                }
           }
-
-          stage("Acceptance test") {
-               steps {
-                    sleep 60
-                    sh "chmod +x acceptance-test.sh && ./acceptance-test.sh"
-               }
-          }
-
           stage("Release") {
                steps {
                     sh "kubectl config use-context production"
@@ -74,12 +54,5 @@ pipeline {
                     sh "kubectl apply -f calculator.yaml"
                }
           }
-          stage("Smoke test") {
-              steps {
-                  sleep 60
-                  sh "chmod +x smoke-test.sh && ./smoke-test.sh"
-              }
-          }
-*/
      }
 }
