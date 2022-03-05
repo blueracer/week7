@@ -60,6 +60,9 @@ podTemplate(yaml: '''
           echo 'FROM openjdk:8-jre' > Dockerfile
           echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar' >> Dockerfile
           echo 'ENTRYPOINT ["java", "-jar", "app.jar"]' >> Dockerfile
+          ls /mnt/*jar
+          mv /mnt/calculator-0.0.1-SNAPSHOT.jar .
+          /kaniko/executor --context `pwd` --destination blueracer/calculator-feature:0.1 --force
           '''
         }
       }
