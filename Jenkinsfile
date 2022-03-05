@@ -116,10 +116,10 @@ pipeline {
             '''
             script {
               if (env.BRANCH_NAME == 'main') {
-                /kaniko/executor --context `pwd` --destination blueracer/calculator:1.0 --force
+                sh "/kaniko/executor --context `pwd` --destination blueracer/calculator:1.0"
               }
               if (env.BRANCH_NAME == 'feature') {
-                /kaniko/executor --context `pwd` --destination blueracer/calculator-feature:0.1 --force
+                sh "/kaniko/executor --context `pwd` --destination blueracer/calculator-feature:0.1"
               }
             }
         }
