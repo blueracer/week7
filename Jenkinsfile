@@ -1,9 +1,9 @@
 pipeline {
-  agent {
+     agent {
     kubernetes {
       yaml '''
-          apiVersion: v1
-    kind: Pod
+        apiVersion: v1
+        kind: Pod
     spec:
       containers:
       - name: gradle
