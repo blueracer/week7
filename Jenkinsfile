@@ -37,14 +37,11 @@ podTemplate(yaml: '''
 ''') {
   node(POD_LABEL) {
    stage('Build a gradle project') {
-      git 'https://github.com/blueracer/week7.git'
+    git 'https://github.com/blueracer/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
       container('gradle') {        
           stage('Build a gradle project') {
           sh '''
-          pwd
-          ls -l
           cd /home/jenkins/agent/workspace/week7_playground/Chapter08/sample1
-          sed -i '4 a /** Main app */' /home/jenkins/agent/workspace/week7_playground/Chapter08/sample1/src/main/java/com/leszko/calculator/Calculator.java
           chmod +x gradlew
           ./gradlew compileJava
           ./gradlew test
