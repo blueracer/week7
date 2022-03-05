@@ -38,29 +38,17 @@ podTemplate(yaml: '''
   node(POD_LABEL) {
     stage('Build a gradle project') {
       git 'https://github.com/blueracer/week7.git'
-      container('gradle') {
-        stage("Compile") {
-               steps {
-                    sh "./gradlew compileJava"
-               }
-          }
-          stage("Unit test") {
-               steps {
-                    sh "./gradlew test"
-               }
-          }
-          stage("Static code analysis") {
-               steps {
-                    sh "./gradlew checkstyleMain"
-               }
-          }
-        stage('Build a gradle project') {
+      container('gradle') {        
+          stage('Build a gradle project') {
           sh '''
           pwd
           ls -l
-          cd /home/jenkins/agent/workspace/week7lab/
-          sed -i '4 a /** Main app */' /home/jenkins/agent/workspace/week7/src/main/java/com/leszko/calculator/Calculator.java
+          cd /home/jenkins/agent/workspace/week7_playground/
+          sed -i '4 a /** Main app */' /home/jenkins/agent/workspace/week7_playground/src/main/java/com/leszko/calculator/Calculator.java
           chmod +x gradlew
+          ./gradlew compileJava
+          ./gradlew test
+          ./gradlew checkstyleMain
           ./gradlew build
           mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
           '''
