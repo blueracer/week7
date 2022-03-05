@@ -43,9 +43,6 @@ podTemplate(yaml: '''
           sh '''
           cd /home/jenkins/agent/workspace/week7_playground/Chapter08/sample1
           chmod +x gradlew
-          ./gradlew compileJava
-          ./gradlew test
-          ./gradlew checkstyleMain
           ./gradlew build
           mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
           '''
