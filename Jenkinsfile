@@ -36,7 +36,7 @@ podTemplate(yaml: '''
               path: config.json
 ''') {
   node(POD_LABEL) {
-    stage('Build a gradle project') {
+/*    stage('Build a gradle project') {
       git 'https://github.com/blueracer/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
       container('gradle') {        
           stage('Build a gradle project') {
@@ -55,7 +55,7 @@ podTemplate(yaml: '''
         }
       }
     }
-
+*/
     stage('Build Java Image') {
       container('kaniko') {
         stage('Build a container') {
