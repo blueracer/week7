@@ -47,6 +47,10 @@ podTemplate(yaml: '''
           ./gradlew test
           ./gradlew checkstyleMain
           ./gradlew build
+          chmod +x acceptance-test.sh 
+          ./acceptance-test.sh
+          chmod +x smoke-test.sh
+          ./smoke-test.sh
           mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
           '''
         }
