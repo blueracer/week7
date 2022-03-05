@@ -25,7 +25,7 @@ podTemplate(yaml: '''
             items:
             - key: .dockerconfigjson
               path: config.json
-''')
+''') {
 pipeline {
      agent any
      triggers {
@@ -46,4 +46,5 @@ pipeline {
           }
 
      }
+}
 }
