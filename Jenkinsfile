@@ -84,7 +84,6 @@ pipeline {
                }
           }
         }
-
           stage("Package") {
                steps {
 			          script {
@@ -98,7 +97,6 @@ pipeline {
                      } 
 					 catch (Exception e) {
                        echo "Build failed. Exiting"
-                       sh 'exit 1'
                       }
                     }
 				}
