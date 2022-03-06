@@ -87,16 +87,16 @@ pipeline {
 
           stage("Package") {
                steps {
-			          script {
-                     try {
-					              container('gradle') {
+		script {
+                   try {
+			container('gradle') {
                         sh """
-						            ./gradlew build
-						            mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-						            """
-					              }
+			./gradlew build
+			mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
+			"""
+					     }
                      } 
-					 catch (Exception e) {
+		       catch (Exception e) {
                        echo "Build failed. Exiting"
                        sh 'exit 1'
                       }
